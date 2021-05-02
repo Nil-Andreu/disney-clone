@@ -55,8 +55,14 @@ const Logo = styled.img`
     width: 80px;
 `;
 
+/**The flex:1 allows us to push the profile image to the full left,
+ * as which is saying is that the nav menu is the most important thing
+ */
 const NavMenu = styled.ul`
     display: flex;
+    flex: 1;
+    margin-left: 30px;
+    align-items: center;
 `;
 
 const Item = styled.a`
@@ -64,18 +70,37 @@ const Item = styled.a`
     align-items: center;
     justify-content: center;
     padding: 0 12px;
+    cursor: pointer;
 `;
 
 const Img = styled.img`
     height: 20px;
 `;
 
+/**This styled components has some properties as the sass.
+ * The ::after creates like a div aftet the span. This will be used for the animation of
+ * each span element of inferior line
+*/
 const Span = styled.span`
     font-size: 13px;
     letter-spacing: 1.42px;
+
+    &:after {
+        content: "";
+        height: 2px;
+        background: white;
+        width: 20px;
+        
+
+        // Comments in the react comes like this in styled components, as normal CSS
+    }
 `;
 
 const UserImg = styled.img`
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
 
 `;
 
@@ -83,7 +108,10 @@ const UserImg = styled.img`
 export default Header;
 
 /**When we select a word and put Command+D, gonna select all the same words in the file.
- * This is useful when changing a name to a variable
+ * This is useful when changing a name to a variable.
+ * 
+ * Another functionality is that we can Control+Click in a name of the component
+ * and will show us where the same variable is created in the page (useful when creating the styles)
  */
 
 /**In styled components i can also have nested styles as in sass

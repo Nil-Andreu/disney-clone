@@ -85,14 +85,19 @@ const Span = styled.span`
     font-size: 13px;
     letter-spacing: 1.42px;
 
+    // We make the position relative here to be able to position absolute then
+    position: relative;
+
     &:after {
         content: "";
         height: 2px;
         background: white;
-        width: 20px;
-        
 
-        // Comments in the react comes like this in styled components, as normal CSS
+        //The position is absolute relatively to span
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -6px;
     }
 `;
 

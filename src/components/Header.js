@@ -35,6 +35,7 @@ function Header() {
                         <Span>SERIES</Span>
                     </Item>
                 </NavMenu>
+                <UserImg src="images/profile.jfif"/>
             </Nav>
         </div>
     )

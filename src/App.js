@@ -4,10 +4,13 @@
 import React from 'react';
 import './App.css';
 
+/**we do the importation of the different components */
+import Header from './components/Header';
+
 function App() {
   return (
     <div className="App">
-      
+      <Header />
     </div>
   );
 }

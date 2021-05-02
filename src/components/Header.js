@@ -8,7 +8,7 @@ function Header() {
     return (
         <div>
             <Nav>
-                <Logo src="./public/images/logo.svg" />
+                <Logo src="../public/" />
                 <NavMenu>
 
                 </NavMenu>

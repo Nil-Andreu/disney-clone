@@ -7,10 +7,16 @@ import './App.css';
 /**we do the importation of the different components */
 import Header from './components/Header';
 
+/**For the home page */
+import Home from './components/Home';
+
 function App() {
   return (
     <div className="App">
       <Header />
+      <Home>
+
+      </Home>
     </div>
   );
 }

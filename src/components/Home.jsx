@@ -4,7 +4,8 @@ import styled from 'styled-components';
 // The image slider is going to be in another file component
 import ImgSlider from './ImgSlider.jsx';
 
-import Viewers from './Viewers.jsx'
+import Viewers from './Viewers.jsx';
+import Movies from './Movies.jsx';
 
 
 function Home() {
@@ -12,6 +13,7 @@ function Home() {
         <Container>
             <ImgSlider />
             <Viewers />
+            <Movies />
         </Container>
     )
 }

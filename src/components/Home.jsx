@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 
+// The image slider is going to be in another file component
 import ImgSlider from './ImgSlider.jsx';
 
 

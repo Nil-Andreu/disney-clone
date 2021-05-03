@@ -20,7 +20,7 @@ function ImgSlider() {
     let settings = {
         dots: true, // To have dots in the slider
         infinite: true, //To infinitely move the slider
-        speed: 500, //500 milliseconds of speed of changing
+        speed: 500, //500 milliseconds of speed of transition of one slide to other
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
@@ -42,12 +42,36 @@ function ImgSlider() {
 // In this component we use the slider
 const Carousel = styled(Slider)`
     margin-top: 20px;
+
+    // Now i am going to edit the styles of the slider
+    ul li button {
+        &:before {
+            font-size: 10px;
+            color: rgb(150, 158, 171);
+        }
+    }
+
+    // For the button which is in active (which represents the actual image)
+    li.slick-active button::before{
+        color: white;
+    }
+
+    .slick-list {
+        // I want the images in the other slides to be visible, as by default is hidden
+        overflow: visible;
+    }
+
+    button {
+        // This is for the buttons of arrows to appear in both sides
+        z-index: 1;
+    }
 `;
 
 const Wrap = styled.div`
 
 
     img {
+        border: 4px solid transparent;
         border-radius: 5px;
         width: 100%;
         height: 100%;

@@ -69,7 +69,7 @@ const Item = styled.a`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 12px;
+    padding: 0 20px;
     cursor: pointer;
 `;
 
@@ -90,14 +90,33 @@ const Span = styled.span`
 
     &:after {
         content: "";
-        height: 2px;
+        height: 1.5px;
         background: white;
 
         //The position is absolute relatively to span
         position: absolute;
-        left: 0;
+
+        //We give no space to the left no right so this way it occupies all the span
+        left: -15px;
         right: 0;
-        bottom: -6px;
+
+        // Push this div down the span component
+        bottom: -5px;
+
+        // We put an opacity of 0 so it does not appear initially
+        opacity: 0;
+
+        //And the transformation from left to the center
+        transform-origin: left center;
+        transform: scaleX(0);
+        transition: all 250ms cubix-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+    }
+
+    &:hover{
+        &:after {
+            transform:scalex(1);
+            opacity: 1;
+        }
     }
 `;
 
@@ -106,7 +125,6 @@ const UserImg = styled.img`
     height: 40px;
     border-radius: 50%;
     cursor: pointer;
-
 `;
 
 

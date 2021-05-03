@@ -106,16 +106,16 @@ const Span = styled.span`
         // We put an opacity of 0 so it does not appear initially
         opacity: 0;
 
-        //And the transformation from left to the center
+        // And the transformation from left to the center
         transform-origin: left center;
         transform: scaleX(0);
-        transition: all 250ms cubix-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+        transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
     }
 
     &:hover{
         &:after {
-            transform:scalex(1);
             opacity: 1;
+            transform:scalex(1);
         }
     }
 `;

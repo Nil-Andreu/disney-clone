@@ -18,6 +18,9 @@ const Container = styled.main`
     min-height: calc(100vh - 70px);
     padding: 0 calc(3.5vw - 5px);
 
+    // We use the overflow hidden for the slider only to appear in the screen --> same we will do in header
+    overflow-x: hidden;
+
     // Position relative to be able to position absolutely the after relative to this container
     position: relative;
 

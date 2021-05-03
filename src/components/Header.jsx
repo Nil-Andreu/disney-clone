@@ -48,6 +48,9 @@ const Nav = styled.nav`
     display: flex;
     align-items: center;
     padding: 0 36px;
+
+    // We are going to make overflow hidden, to hide what does not enter in the screen (due to slider) 
+    overflow-x: hidden;
 `;
 
 /**When we need to import an image, this image directory by default is the public */

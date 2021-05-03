@@ -23,7 +23,7 @@ function ImgSlider() {
         speed: 500, //500 milliseconds of speed of transition of one slide to other
         slidesToShow: 1,
         slidesToScroll: 1,
-        autoplay: true,
+        autoplay: false,
     };
     //We will put this settings into carousel by desctructing this object with ...
     

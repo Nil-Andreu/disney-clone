@@ -86,6 +86,7 @@ const Img = styled.img`
 */
 const Span = styled.span`
     font-size: 13px;
+    padding-left: 5px;
     letter-spacing: 1.42px;
 
     // We make the position relative here to be able to position absolute then

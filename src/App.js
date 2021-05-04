@@ -28,14 +28,19 @@ function App() {
     <div className="App">
       <Router>
         <Header />
+
         <Switch>
-          <Route path="detail">
-            <Detail />
-          </Route>
-          <Route path="/">
+
+          <Route exact path="/">
             <Home />
           </Route>
+
+          <Route exact path="/detail">
+            <Detail />
+          </Route>
+
         </Switch>
+
       </Router>      
     </div>
   );

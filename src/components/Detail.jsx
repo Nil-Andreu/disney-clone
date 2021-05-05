@@ -28,6 +28,13 @@ function Detail() {
                     <img src="/images/group-icon.png" alt=""/>
                 </GroupWatchButton>
             </Controls>
+
+            <SubTitle>
+                Lorem ipsum dolor sit amet.
+            </SubTitle>
+            <Description>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum accusantium fugiat, ex vitae a quam saepe, modi harum quia illum ipsum error non incidunt doloribus!
+            </Description>
         </Container>
     )
 }
@@ -125,6 +132,23 @@ const AddButton = styled.button`
 
 const GroupWatchButton = styled(AddButton)`
     background: rgb(0, 0, 0);
+    cursor: pointer;
+`;
+
+const SubTitle = styled.div`
+    color: rgb(249, 249, 249);
+    font-size: 15px;
+    min-height: 20px;
+    margin-top: 26px;
+`;
+
+const Description = styled.div`
+    line-height: 1.4;
+    font-size: 20px;
+    margin-top: 16px;
+    width: 40vw;
+    min-width: 300px;
+    color: rgb(249, 249, 249);
 `;
 
 export default Detail

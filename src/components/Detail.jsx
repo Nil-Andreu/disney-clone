@@ -22,12 +22,10 @@ function Detail() {
                     <span>TRAILER</span>
                 </TrailerButton>
                 <AddButton>
-                    <img src="/images/play-icon-black.png" alt=""/>
-                    <span>PLAY</span>
+                    <span>+</span>
                 </AddButton>
                 <GroupWatchButton>
-                    <img src="/images/play-icon-black.png" alt=""/>
-                    <span>PLAY</span>
+                    <img src="/images/group-icon.png" alt=""/>
                 </GroupWatchButton>
             </Controls>
         </Container>
@@ -78,6 +76,7 @@ const ImgTitle = styled.div`
 
 const Controls = styled.div`
     display: flex;
+    align-items: center;
     flex-direction: row;
 `;
 
@@ -99,26 +98,33 @@ const PlayButton = styled.button`
     }
 `;
 
-const TrailerButton = styled.button`
-    border-radius: 4px;
-    margin-right: 22px;
-    font-size: 15px;
+//We are gong to import the play button as the styles are the same except background color
+const TrailerButton = styled(PlayButton)`
+    background: rgb(0, 0, 0, 0.3);
+    border: 1px solid rgb(249, 249, 249);
+    color: rgb(249, 249, 249);
+`;
+
+const AddButton = styled.button`
+    height: 44px;
+    width: 44px;
     display: flex;
     align-items: center;
-    height: 56px;
-    background-color: rgb(240, 249, 249);
-    border: none;
-    padding: 0 24px;
-    letter-spacing: 1.8px;
-    cursor: pointer;
+    border-radius: 50%;
+    justify-content: center;
+    border: 2px solid white;
+    background-color: rgba(0,0,0, 0.6);
+    margin-right: 16px;
 
-    &:hover {
-        background: rba(198, 198, 198);
+    span {
+        font-size: 30px;
+        color: white;
+        cursor: pointer;
     }
 `;
 
-const AddButton = styled.button``;
-
-const GroupWatchButton = styled.button``;
+const GroupWatchButton = styled(AddButton)`
+    background: rgb(0, 0, 0);
+`;
 
 export default Detail

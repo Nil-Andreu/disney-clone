@@ -60,7 +60,7 @@ const Background = styled.div`
 
     img {
         width: 100vw;
-        height: 100vw;
+        height: 100vh;
 
         //And the image for covering it correctly
         object-fit: cover;
@@ -68,6 +68,7 @@ const Background = styled.div`
 `;
 
 const ImgTitle = styled.div`
+    margin-top: 40px;
     height: 30vh;
     width: 35vw;
     min-height: 170px;

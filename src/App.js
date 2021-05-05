@@ -13,11 +13,12 @@ import Home from './components/Home.jsx';
 // And for the detail page
 import Detail from './components/Detail.jsx';
 
+import Login from './components/Login.jsx';
+
 /**Need to install react-router-dom to switch between pages */
 import {BrowserRouter as Router, 
         Switch,
-        Route,
-        Link 
+        Route 
       } from "react-router-dom"
 
 /**WE define the routes of out page. By default, all of them are going to have the header
@@ -30,6 +31,9 @@ function App() {
         <Header />
 
         <Switch>
+          <Route exact path="/login">
+            <Login />
+          </Route>
 
           <Route exact path="/">
             <Home />

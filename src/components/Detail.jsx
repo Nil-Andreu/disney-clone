@@ -1,43 +1,73 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
+import { useParams } from 'react-router-dom'; //We have passed the id as the parameter
+
+import db from "../firebase"
+
 function Detail() {
+    const {id} = useParams(); //Grabbing the id
+    const [movie, setMovie] = useState() //The usestate is like redux but for individual components
+
+    //And now we will grab the data from this id
+    useEffect(() => {
+        // Grab the movie info from db
+        db.collection("movies")
+        .doc(id)
+        .get()
+        .then((doc) => {
+            if(doc.exists) {
+                //Save the movie data in state, not in redux as is not going to be used in not any more component in page
+                setMovie(doc.data());
+            }
+            else {
+                //redirect to home page
+
+            }
+        }) //Check if exist, the moview is found
+    }, [id]) //The empty brakets is for loading it whenever the copmonent is rendered
+
+    // And now populate the UI when the movie is already loaded from the database (so movie is true), as it can take some milliseconds
     return (
         <Container>
-            <Background>
-                <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/4F39B7E16726ECF419DD7C49E011DD95099AA20A962B0B10AA1881A70661CE45/scale?width=1440&aspectRatio=1.78&format=jpeg" alt=""/>
-            </Background>
+            {movie && (
+            <>
+                <Background>
+                    <img src={movie.backgroundImg} alt=""/>
+                </Background>
             
-            <ImgTitle>
-                <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/D7AEE1F05D10FC37C873176AAA26F777FC1B71E7A6563F36C6B1B497CAB1CEC2/scale?width=1440&aspectRatio=1.78" alt=""/>
-            </ImgTitle>
+                <ImgTitle>
+                    <img src={movie.titleImg} alt=""/>
+                </ImgTitle>
 
-            <Controls>
-                <PlayButton>
-                    <img src="/images/play-icon-black.png" alt=""/>
-                    <span>PLAY</span>
-                </PlayButton>
-                <TrailerButton>
-                    <img src="/images/play-icon-white.png" alt=""/>
-                    <span>TRAILER</span>
-                </TrailerButton>
-                <AddButton>
-                    <span>+</span>
-                </AddButton>
-                <GroupWatchButton>
-                    <img src="/images/group-icon.png" alt=""/>
-                </GroupWatchButton>
-            </Controls>
+                <Controls>
+                    <PlayButton>
+                        <img src="/images/play-icon-black.png" alt=""/>
+                        <span>PLAY</span>
+                    </PlayButton>
+                    <TrailerButton>
+                        <img src="/images/play-icon-white.png" alt=""/>
+                        <span>TRAILER</span>
+                    </TrailerButton>
+                    <AddButton>
+                        <span>+</span>
+                    </AddButton>
+                    <GroupWatchButton>
+                        <img src="/images/group-icon.png" alt=""/>
+                    </GroupWatchButton>
+                </Controls>
 
-            <SubTitle>
-                Lorem ipsum dolor sit amet.
-            </SubTitle>
-            <Description>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum accusantium fugiat, ex vitae a quam saepe, modi harum quia illum ipsum error non incidunt doloribus!
-            </Description>
+                <SubTitle>
+                    {movie.subTitle}
+                </SubTitle>
+                <Description>
+                    {movie.description}
+                </Description>
+            </>
+            )}
         </Container>
     )
-}
+};
 
 const Container = styled.div`
     min-height: calc(100vh-70px);

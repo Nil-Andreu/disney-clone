@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
 
+import {Link} from 'react-router-dom'; //This link what does is surronunding an object with an a tag
+
 import {selectMovies} from '../features/movie/movieSlice'; //Select movies will gives us the movies state from the database
 import {useSelector} from 'react-redux'
 
@@ -17,8 +19,10 @@ function Movies() {
 
                 {movies && 
                     movies.map((movie) => (
-                        <Wrap key = {movie.id}>
-                            <img src={movie.cardImg} alt=""/>
+                        <Wrap key={movie.id}>
+                            <Link to={`/detail/${movie.id}`}>
+                                <img src={movie.cardImg} alt=""/>
+                            </Link>
                         </Wrap>
                     ))
                 }
@@ -29,6 +33,7 @@ function Movies() {
 
 // Where in the return, we say taht if they are movies &&, then map (for loop) those for each movie
 // WE put in the wrap a key, as firebase tracks all those components and they need to have a unique identifier 
+// The link will link us to the detail page, for the movie id
 
 const Container = styled.div`
     

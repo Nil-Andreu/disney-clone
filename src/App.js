@@ -39,7 +39,7 @@ function App() {
             <Home />
           </Route>
 
-          <Route exact path="/detail">
+          <Route path="/detail/:id">
             <Detail />
           </Route>
 
@@ -49,6 +49,8 @@ function App() {
     </div>
   );
 }
+
+//Detail :id to take into consideration when we pass the id
 
 export default App;
 

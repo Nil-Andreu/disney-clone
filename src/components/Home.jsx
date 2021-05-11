@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react';  
 import styled from 'styled-components';
 
 // The image slider is going to be in another file component
@@ -7,8 +7,19 @@ import ImgSlider from './ImgSlider.jsx';
 import Viewers from './Viewers.jsx';
 import Movies from './Movies.jsx';
 
+import db from '../firebase';
 
 function Home() {
+    //This useFefect is going to do whenever this component is loaded
+    useEffect(() => {
+        db.collection("movies").onSnapshot((snapshot) => {
+            let tempMovies = snapshot.docs.map((doc) => {
+                // console.log(doc.data()); To see how data is collected
+                return { id: doc.id, ...doc.data()} //Return an object with the brackets, saving the id so we can do then the detail page
+            }) //The .map will loop for every single doc (how the data is sent) in spanshot --> consoleg.log(snapshot)
+        }) //We are going to collect the category "movies" inside my db, and to do a snapshot (take a picture of what inside) --> and when this picture changes, it will send you a new one
+    }, [])
+
     return (
         <Container>
             <ImgSlider />

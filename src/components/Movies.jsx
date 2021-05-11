@@ -8,7 +8,7 @@ function Movies() {
     // Now we are going to grap those movies, which we grap them from the whole state of home component (in use effect)
     // As those movies are sotred using the dispatch
     const movies = useSelector(selectMovies);
-    console.log(movies)
+    // console.log(movies) To see that movies is passed to thie child component
 
     return (
         <Container>
@@ -17,7 +17,7 @@ function Movies() {
 
                 {movies && 
                     movies.map((movie) => (
-                        <Wrap>
+                        <Wrap key = {movie.id}>
                             <img src={movie.cardImg} alt=""/>
                         </Wrap>
                     ))
@@ -28,6 +28,7 @@ function Movies() {
 }
 
 // Where in the return, we say taht if they are movies &&, then map (for loop) those for each movie
+// WE put in the wrap a key, as firebase tracks all those components and they need to have a unique identifier 
 
 const Container = styled.div`
     

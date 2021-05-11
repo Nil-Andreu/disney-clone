@@ -1,7 +1,13 @@
 import React from 'react'
 import styled from 'styled-components';
 
+import {selectMovies} from '../features/movie/movieSlice'; //Select movies will gives us the movies state from the database
+import {useSelector} from 'react-redux'
+
 function Movies() {
+    // Now we are going to grap those movies
+    const movies = useSelector(selectMovies);
+
     return (
         <Container>
             <Heading>Recommended for You</Heading>

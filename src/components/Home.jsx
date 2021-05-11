@@ -8,18 +8,29 @@ import Viewers from './Viewers.jsx';
 import Movies from './Movies.jsx';
 
 import db from '../firebase';
+import {useDispatch} from "react-redux" //To collect the movies we have to use dispatch
+import {setMovies} from "../features/movie/movieSlice" //Importing setMovies action
 
 function Home() {
+    const dispatch = useDispatch();
+
+
     //This useFefect is going to do whenever this component is loaded
+    //Return an object with the brackets, saving the id so we can do then the detail page
+    //The .map will loop for every single doc (how the data is sent) in spanshot --> consoleg.log(snapshot)
     useEffect(() => {
         db.collection("movies").onSnapshot((snapshot) => {
             let tempMovies = snapshot.docs.map((doc) => {
-                // console.log(doc.data()); To see how data is collected
-                return { id: doc.id, ...doc.data()} //Return an object with the brackets, saving the id so we can do then the detail page
-            }) //The .map will loop for every single doc (how the data is sent) in spanshot --> consoleg.log(snapshot)
-        }) //We are going to collect the category "movies" inside my db, and to do a snapshot (take a picture of what inside) --> and when this picture changes, it will send you a new one
+                return { id: doc.id, ...doc.data()}
+            }) 
+            dispatch(setMovies(tempMovies)); //Putting the movies to be the state of the components
+        })
+        //console.log(doc.data()); To see how data is collected
+        //We are going to collect the category "movies" inside my db, and to do a snapshot (take a picture of what inside) --> and when this picture changes, it will send you a new one
     }, [])
 
+    //Redux is important for handling the state, as if we do not use it we will need to pass this to the component every time, which is a lot
+    // As now the home component and for example movies component share the same state
     return (
         <Container>
             <ImgSlider />
@@ -62,5 +73,3 @@ const Container = styled.main`
 
 /**Gonna export this component to be able to import it in a different file */
 export default Home;
-
-

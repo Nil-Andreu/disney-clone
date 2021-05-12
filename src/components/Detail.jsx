@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
-import { useParams } from 'react-router-dom'; //We have passed the id as the parameter
+import { useParams } from 'react-router-dom'; //We have passed the title as the parameter
 
 import db from "../firebase"
 
 function Detail() {
-    const {id} = useParams(); //Grabbing the id
-    const [movie, setMovie] = useState() //The usestate is like redux but for individual components
-
-    //And now we will grab the data from this id
+    const {id} = useParams(); //Grabbing the title
+    const [movie, setMovie] = useState() //The usestate is like redux but for indititleual componenttitle
+    //And now we will grab the data from this title
     useEffect(() => {
         // Grab the movie info from db
         db.collection("movies")

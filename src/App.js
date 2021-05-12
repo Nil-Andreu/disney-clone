@@ -31,11 +31,11 @@ function App() {
         <Header />
 
         <Switch>
-          <Route exact path="/login">
+          <Route path="/login">
             <Login />
           </Route>
 
-          <Route exact path="/">
+          <Route path="/">
             <Home />
           </Route>
 

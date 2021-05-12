@@ -1,7 +1,7 @@
 /**We are going to use the styled components */
 import styled from 'styled-components'
+import React, {useEffect} from 'react'
 
-import React from 'react'
 import {auth, provider} from '../firebase'
 import {useHistory} from 'react-router-dom'; //For redirecting the user when log out
 
@@ -15,6 +15,19 @@ function Header() {
     const userName = useSelector(selectUserName);
     const userPhoto = useSelector(selectUserPhoto);
     const history = useHistory();
+
+    // The state would disappear when the page is refreshed, so for this reason i use this
+    useEffect (() => {
+        auth.onAuthStateChanged(async (user) => {
+            if(user) {
+                dispatch(setUserLogin({
+                    name: user.displayName, 
+                    email: user.email,
+                    photo: user.photoURL
+                }))
+            }
+        }) //As firebase remembers the user due to cookies
+    }, [])
 
     const signIn = () => {
         auth.signInWithPopup(provider) //We are going to sign in with a popup from the google provider
@@ -77,7 +90,7 @@ function Header() {
                                 <Span>SERIES</Span>
                             </Item>
                         </NavMenu>
-                        <UserImg onClick = {signOut} src={photo}/>
+                        <UserImg onClick = {signOut} src={userPhoto}/>
                     </>)
                 }
             </Nav>

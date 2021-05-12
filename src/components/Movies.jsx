@@ -10,6 +10,7 @@ function Movies() {
     // Now we are going to grap those movies, which we grap them from the whole state of home component (in use effect)
     // As those movies are sotred using the dispatch
     const movies = useSelector(selectMovies);
+    console.log(movies)
     // console.log(movies) To see that movies is passed to thie child component
 
     return (

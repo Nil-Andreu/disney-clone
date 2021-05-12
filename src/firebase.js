@@ -3,9 +3,10 @@
  */
 
 import firebase from "firebase"; //First we input the firebase
+require('firebase/auth')
 
 // Then we have the firebase configuration, which will give access to the actual db
-const firebaseConfig = {
+/*const firebaseConfig = {
   apiKey: "AIzaSyA9BnlX96fMf7XiUVCFRsoQzG8DGERJkeY",
   authDomain: "disneyplus-clone-a33d5.firebaseapp.com",
   projectId: "disneyplus-clone-a33d5",
@@ -13,7 +14,17 @@ const firebaseConfig = {
   messagingSenderId: "37918794208",
   appId: "1:37918794208:web:dbe9842dfe1dda522a4b85",
   measurementId: "G-DRVLJKWRWG",
+};*/
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAax-ZSPR7kREiBaTQBf2zPbZA8kFwF3JU",
+  authDomain: "disney-clone-ecea1.firebaseapp.com",
+  projectId: "disney-clone-ecea1",
+  storageBucket: "disney-clone-ecea1.appspot.com",
+  messagingSenderId: "759410757020",
+  appId: "1:759410757020:web:a65575579a21c7781b0c59"
 };
+// In firebase configuration to write if true
 
 const firebaseApp = firebase.initializeApp(firebaseConfig); //Initializing the firebase app
 

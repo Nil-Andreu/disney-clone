@@ -2,40 +2,84 @@
 import styled from 'styled-components'
 
 import React from 'react'
+import {auth, provider} from '../firebase'
+import {useHistory} from 'react-router-dom'; //For redirecting the user when log out
+
+//For user registration
+import {selectUserName, selectUserPhoto, setSignOut, setUserLogin} from '../features/user/userSlice.jsx'
+import {useSelector, useDispatch} from 'react-redux' 
 
 /**Here we define the general component (header in this case) */
 function Header() {
+    const dispatch = useDispatch();
+    const userName = useSelector(selectUserName);
+    const userPhoto = useSelector(selectUserPhoto);
+    const history = useHistory();
+
+    const signIn = () => {
+        auth.signInWithPopup(provider) //We are going to sign in with a popup from the google provider
+        .then((result) => {
+            let user = result.user //Where user is one of th efields obtained in the result
+
+            // console.log(result) This result hasa lot of information, including name, email, photoURL, ...
+            dispatch(setUserLogin({
+                name: user.displayName, //Where displayName is where the name is stored inside of the user
+                email: user.email,
+                photo: user.photoURL
+            })) //And now dispatch the setuserlogin with the data obtained
+            history.push("/")
+        }) //Then when us signed in
+    }
+
+    const signOut = () => {
+        auth.signOut()
+        .then(() => {
+            dispatch(setSignOut());
+            history.push("/login") //Te redirecto to the login
+        })
+    }
+
     return (
         <div>
             <Nav>
                 <Logo src="/images/logo.svg" />
-                <NavMenu>
-                    <Item>
-                        <Img src="/images/home-icon.svg" />
-                        <Span>HELLO</Span>
-                    </Item>
-                    <Item>
-                        <Img src="/images/search-icon.svg" />
-                        <Span>SEARCH</Span>
-                    </Item>
-                    <Item>
-                        <Img src="/images/watchlist-icon.svg" />
-                        <Span>WATCHLIST</Span>
-                    </Item>
-                    <Item>
-                        <Img src="/images/original-icon.svg" />
-                        <Span>ORIGINALS</Span>
-                    </Item>
-                    <Item>
-                        <Img src="/images/movie-icon.svg" />
-                        <Span>MOVIES</Span>
-                    </Item>
-                    <Item>
-                        <Img src="/images/series-icon.svg" />
-                        <Span>SERIES</Span>
-                    </Item>
-                </NavMenu>
-                <UserImg src="images/profile.jfif"/>
+                {!userName ? 
+                    (<LoginContainer>
+                        <Login onClick={signIn}>
+                            Login
+                        </Login>
+                    </LoginContainer>) 
+                    : 
+                    ( <>
+                        <NavMenu>
+                            <Item>
+                                <Img src="/images/home-icon.svg" />
+                                <Span>HELLO</Span>
+                            </Item>
+                            <Item>
+                                <Img src="/images/search-icon.svg" />
+                                <Span>SEARCH</Span>
+                            </Item>
+                            <Item>
+                                <Img src="/images/watchlist-icon.svg" />
+                                <Span>WATCHLIST</Span>
+                            </Item>
+                            <Item>
+                                <Img src="/images/original-icon.svg" />
+                                <Span>ORIGINALS</Span>
+                            </Item>
+                            <Item>
+                                <Img src="/images/movie-icon.svg" />
+                                <Span>MOVIES</Span>
+                            </Item>
+                            <Item>
+                                <Img src="/images/series-icon.svg" />
+                                <Span>SERIES</Span>
+                            </Item>
+                        </NavMenu>
+                        <UserImg onClick = {signOut} src={photo}/>
+                    </>)
+                }
             </Nav>
         </div>
     )
@@ -56,6 +100,34 @@ const Nav = styled.nav`
 /**When we need to import an image, this image directory by default is the public */
 const Logo = styled.img`
     width: 80px;
+`;
+
+const LoginContainer = styled.div`
+    flex: 1; // This will stretch the whole div
+    display: flex;
+    justify-content: flex-end;
+`;
+
+
+// In the part of code where we define the login says that if the user.name is undefined, render login. If is true, render normal
+const Login = styled.div`
+    border: 1px solid #f9f9f9;
+    padding: 8px 16px;
+    border-radius: 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    background-color: rgba(0, 0, 0, 0.6);
+    transition: all 0.2s ease 0s;
+    cursor: pointer;
+
+
+    &:hover {
+        color: black;
+        background: #f9f9f9; 
+        border-color: transparent; //To do not appear this border color
+
+    }
+
 `;
 
 /**The flex:1 allows us to push the profile image to the full left,

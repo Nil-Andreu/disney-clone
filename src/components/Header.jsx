@@ -2,7 +2,7 @@
 import styled from 'styled-components'
 import React, {useEffect} from 'react'
 
-import {auth, provider} from '../firebase'
+import {provider, auth} from '../firebase'
 import {useHistory} from 'react-router-dom'; //For redirecting the user when log out
 
 //For user registration

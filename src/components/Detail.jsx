@@ -15,9 +15,12 @@ function Detail() {
         .doc(id)
         .get()
         .then((doc) => {
+            console.log("This is doc", doc)
             if(doc.exists) {
+                console.log("This is doc", doc)
                 //Save the movie data in state, not in redux as is not going to be used in not any more component in page
                 setMovie(doc.data());
+                console.log("This is doc", doc.data())
             }
             else {
                 //redirect to home page

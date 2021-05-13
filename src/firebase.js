@@ -3,10 +3,9 @@
  */
 
 import firebase from "firebase"; //First we input the firebase
-require('firebase/auth')
 
 // Then we have the firebase configuration, which will give access to the actual db
-/*const firebaseConfig = {
+/*const firebaseConfig1 = {
   apiKey: "AIzaSyA9BnlX96fMf7XiUVCFRsoQzG8DGERJkeY",
   authDomain: "disneyplus-clone-a33d5.firebaseapp.com",
   projectId: "disneyplus-clone-a33d5",
@@ -16,7 +15,7 @@ require('firebase/auth')
   measurementId: "G-DRVLJKWRWG",
 };*/
 
-const firebaseConfig = {
+const firebaseConfig2 = {
   apiKey: "AIzaSyAax-ZSPR7kREiBaTQBf2zPbZA8kFwF3JU",
   authDomain: "disney-clone-ecea1.firebaseapp.com",
   projectId: "disney-clone-ecea1",
@@ -26,13 +25,14 @@ const firebaseConfig = {
 };
 // In firebase configuration to write if true
 
-const firebaseApp = firebase.initializeApp(firebaseConfig); //Initializing the firebase app
+const firebaseApp1 = firebase.initializeApp(firebaseConfig2); //Initializing the firebase app
+//const firebaseApp2 = firebase.initializeApp(firebaseConfig2); //Initializing the firebase app
 
 // We now define which things are gonig to be using
-const db = firebaseApp.firestore(); //The fireastore is the actual db
+const db = firebaseApp1.firestore(); //The fireastore is the actual db
 const auth = firebase.auth(); //The auth is to be able to log in or log out
 const provider = new firebase.auth.GoogleAuthProvider(); //As we can have google auth (could use also facebook, instagram, ...)
-const storage = firebase.storage();
+const storage = firebaseApp1.storage();
 
 export { auth, provider, storage };
 export default db;
